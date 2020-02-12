@@ -20,7 +20,7 @@ function readToFile(jsonData, filePath = 'output.xlsx') {
  * 
  * @param {string|Object|Array} jsonData The JSON Data to read from
  */
-function readAndGet(jsonData, onlyWorksheet = false) {
+function readAndGet(jsonData) {
     const workbook = renderWorkbook(jsonData);
     return workbook;
 }

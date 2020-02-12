@@ -10,11 +10,20 @@ async function readToFile(xlsxData, filePath = 'output.json') {
     return true;
 }
 
+/**
+ * 
+ * @param {workbook} xlsxData The workbook to get in js
+ */
 
 function readAndGet(xlsxData) {
     const jsonData = renderJson(xlsxData);
     return jsonData;
 }
+/**
+ * 
+ * @param {string} sourceFilePath The workbook to get in js
+ */
+
 
 function readFromFileAndGet(sourceFilePath) {
     const xlsxData = xlsx.readFile(sourceFilePath);
@@ -22,6 +31,12 @@ function readFromFileAndGet(sourceFilePath) {
 
     return jsonData;
 }
+
+/**
+ * 
+ * @param {string} sourceFilePath The soruce file path of the workbook
+ * @param {string} destFilePath The output json file path
+ */
 
 async function readFromFileToFile(sourceFilePath, destFilePath = 'output.json') {
     const xlsxData = xlsx.readFile(sourceFilePath);
@@ -31,7 +46,10 @@ async function readFromFileToFile(sourceFilePath, destFilePath = 'output.json') 
     return true;
 }
 
-
+/**
+ * 
+ * @param {workbook} xlsxData The workbook to get in js
+ */
 function renderJson(xlsxData) {
     if (!(xlsxData && xlsxData.Sheets && xlsxData.Sheets.Sheet1)) return console.error('Please pass a valid workbook');
 
