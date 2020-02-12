@@ -1,11 +1,8 @@
 {
   "name": "json-and-xlsx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package that converts JSON to XLSX and XLSX to JSON",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "JSON",
     "xlsx",
@@ -14,6 +11,10 @@
   ],
   "author": "Kusi Musah Hussein",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/mkhstar/json-and-xlsx"
+  },
   "dependencies": {
     "dot-object": "^2.1.2",
     "xlsx": "^0.15.5"
