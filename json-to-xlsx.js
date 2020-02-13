@@ -2,6 +2,7 @@ const path = require('path');
 
 const getDotObject = require('./helpers/get-dot-object');
 const xlsx = require('xlsx');
+const bufferFrom = require('buffer-from');
 
 /**
  *
@@ -25,16 +26,51 @@ function readAndGet(jsonData) {
     return workbook;
 }
 
+
+/**
+ * 
+ * @param {string|Object|Array} jsonData The JSON Data to read from
+ */
+function readAndGetBuffer(jsonData) {
+    const workbook = renderWorkbook(jsonData);
+    const defaults = {
+      bookType: 'xlsx',
+      bookSST: false,
+      type: 'binary'
+    };
+    const excelData = xlsx.write(workbook, Object.assign({}, defaults, {}));
+    return excelData instanceof Buffer ? excelData : bufferFrom(excelData, 'binary');
+}
+
 /**
  *
  * @param {string} sourceFilePath The JSON file to read from
  */
 
 function readFromFileAndGet(sourceFilePath) {
-    const jsonData = require(path.join(sourceFilePath));
+    const jsonData = require(path.resolve(sourceFilePath));
     
     const workbook = renderWorkbook(jsonData);
     return workbook;
+}
+
+
+/**
+ *
+ * @param {string} sourceFilePath The JSON file to read from
+ */
+
+function readFromFileAndGetBuffer(sourceFilePath) {
+    const jsonData = require(path.resolve(sourceFilePath));
+    
+    const workbook = renderWorkbook(jsonData);
+    const defaults = {
+      bookType: 'xlsx',
+      bookSST: false,
+      type: 'binary'
+    };
+    const excelData = xlsx.write(workbook, defaults);
+    return excelData instanceof Buffer ? excelData : bufferFrom(excelData, 'binary');
 }
 
 
@@ -69,6 +105,7 @@ function renderWorkbook(data) {
   
     workbook.SheetNames.push('Sheet1');
     workbook.Sheets['Sheet1'] = worksheet;
+
     return workbook;
 }
 
@@ -76,6 +113,8 @@ function renderWorkbook(data) {
 module.exports = {
     readToFile,
     readAndGet,
+    readAndGetBuffer,
     readFromFileAndGet,
+    readFromFileAndGetBuffer,
     readFromFileToFile
 }
