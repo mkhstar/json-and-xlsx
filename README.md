@@ -166,7 +166,7 @@ const jsonData = [
 
 const output = jsonToXlsx.readAndGetBuffer(jsonData);
 /*
-    returns Workbook
+    returns Buffer
 */
 ```
 
