@@ -73,7 +73,7 @@ const output = xlsxToJson.readFromBufferAndGet(workbook);
 ```
 
 
-## readFromFileAndGet(jsonData)
+## readFromFileAndGet(xlsxData)
 Reads workbook returns a json output
 
 | Param | Type | Description |
