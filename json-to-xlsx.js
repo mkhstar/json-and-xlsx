@@ -48,7 +48,7 @@ function readAndGetBuffer(jsonData) {
  */
 
 function readFromFileAndGet(sourceFilePath) {
-    const jsonData = require(path.resolve(sourceFilePath));
+    const jsonData = require(sourceFilePath);
     
     const workbook = renderWorkbook(jsonData);
     return workbook;
@@ -61,7 +61,7 @@ function readFromFileAndGet(sourceFilePath) {
  */
 
 function readFromFileAndGetBuffer(sourceFilePath) {
-    const jsonData = require(path.resolve(sourceFilePath));
+    const jsonData = require(sourceFilePath);
     
     const workbook = renderWorkbook(jsonData);
     const defaults = {
@@ -81,7 +81,7 @@ function readFromFileAndGetBuffer(sourceFilePath) {
  */
 
 function readFromFileToFile(sourceFilePath, destFilePath = 'output.xlsx') {
-    const jsonData = require(path.resolve(sourceFilePath));
+    const jsonData = require(sourceFilePath);
     
     const workbook = renderWorkbook(jsonData);
     xlsx.writeFile(workbook, destFilePath)

@@ -1,69 +1,210 @@
+# json-and-xlsx
+A package for converting JSON to XLSX and XLSX to JSON
+
+# Global Functions
+| Param | Description |
+| --- | --- |
+| xlsxToJson | The function for handling xlsx to json conversion |
+| jsonToXlsx | The function for handling json to xlsx conversion |
+
 # xlsxToJson
+This function is used to handle xlsx to json conversions
 
 ## readAndGet(xlsxData)
-**Kind**: global function  
+Reads workbook returns a json output
 
 | Param | Type | Description |
 | --- | --- | --- |
 | xlsxData | workbook| The workbook to get in js |
 
-## readFromFileAndGet(sourceFilePath)
-**Kind**: global function  
+## Usage
+#### Xlsx Data in Sheet1
+
+| title | description |
+| --- | --- |
+| Title 1 | Desc 1 |
+| Title 2 | Desc 2 |
+
+```javascript
+const {xlsxToJson} = require('json-and-xlsx');
+
+const workbook = require('./workbook'); // Get Workbook
+
+const output = xlsxToJson.readAndGet(workbook);
+/*
+    returns [
+    {
+        title: 'Title 1',
+        description: 'Desc 1'
+    },
+    {
+        title: 'Title 2',
+        description: 'Desc 2'
+    }
+];
+*/
+```
+
+## readFromBufferAndGet(buffer)
+Reads from a buffer and returns a json output
 
 | Param | Type | Description |
 | --- | --- | --- |
-| sourceFilePath | string | The workbook to get in js |
+| buffer | Buffer | The buffer to get in js object |
 
-## readFromFileToFile(sourceFilePath, destFilePath)
-**Kind**: global function  
+## Usage
+```javascript
+const {xlsxToJson} = require('json-and-xlsx');
+const buffer = require('./buffer-data.js');
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| sourceFilePath | string |  | The soruce file path of the workbook |
-| destFilePath | string | output.json | The output json file path |
+const output = xlsxToJson.readFromBufferAndGet(workbook);
+/*
+    returns [
+    {
+        title: 'Title 1',
+        description: 'Desc 1'
+    },
+    {
+        title: 'Title 2',
+        description: 'Desc 2'
+    }
+];
+*/
+```
 
 
-## renderJson(xlsxData)
-**Kind**: global function  
+## readFromFileAndGet(jsonData)
+Reads workbook returns a json output
 
 | Param | Type | Description |
 | --- | --- | --- |
-| xlsxData | workbook | The workbook to get in js |
+| xlsxData | workbook| The workbook to get in js |
+
+## Usage
+#### Xlsx Data in Sheet1 stored in workbook.xlsx
+
+| title | description |
+| --- | --- |
+| Title 1 | Desc 1 |
+| Title 2 | Desc 2 |
+
+```javascript
+const {xlsxToJson} = require('json-and-xlsx');
+
+const output = xlsxToJson.readFromFileAndGet('workbook.xlsx');
+/*
+    returns [
+    {
+        title: 'Title 1',
+        description: 'Desc 1'
+    },
+    {
+        title: 'Title 2',
+        description: 'Desc 2'
+    }
+];
+*/
+```
 
 # jsonToXlsx
+This function is used to handle json to xlsx conversions
 
-## readToFile(jsonData, filePath)
-**Kind**: global function  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| jsonData | string \| Object \| Array |  | The JSON Data to read from |
-| filePath | string | &quot;output.xlsx&quot; | The xlsx file to write results to |
-
-
+```json
+//  json-data.json
+[
+    {
+        "title": "Title 1",
+        "description": "Desc 1"
+    },
+    {
+        "title": "Title 2",
+        "description": "Desc 2"
+    }
+]
+```
 
 ## readAndGet(jsonData)
-**Kind**: global function  
+Reads json returns a workbook
 
-| Param | Type | Description |
-| --- | --- | --- |
-| jsonData | string \| Object \| Array | The JSON Data to read from |
+```javascript
+const {jsonToXlsx} = require('json-and-xlsx');
 
+const jsonData = [
+    {
+        title: "Title 1",
+        description: "Desc 1"
+    },
+    {
+        title: "Title 2",
+        description: "Desc 2"
+    }
+]; // Could be a JSON String
+
+const output = jsonToXlsx.readAndGet(jsonData);
+/*
+    returns Workbook
+*/
+```
+
+
+## readAndGetBuffer(jsonData)
+Reads json returns a buffer of the workbook
+
+```javascript
+const {jsonToXlsx} = require('json-and-xlsx');
+
+const jsonData = [
+    {
+        title: "Title 1",
+        description: "Desc 1"
+    },
+    {
+        title: "Title 2",
+        description: "Desc 2"
+    }
+]; // Could be a JSON String
+
+const output = jsonToXlsx.readAndGetBuffer(jsonData);
+/*
+    returns Workbook
+*/
+```
 
 
 ## readFromFileAndGet(sourceFilePath)
-**Kind**: global function  
+Reads json returns a workbook
 
-| Param | Type | Description |
-| --- | --- | --- |
-| sourceFilePath | string | The JSON file to read from |
+```javascript
+const {jsonToXlsx} = require('json-and-xlsx');
 
+const output = jsonToXlsx.readFromFileAndGet('json-data.json');
+/*
+    returns Workbook
+*/
+```
+
+
+## readFromFileAndGetBuffer(sourceFilePath)
+Reads json returns a workbook
+
+```javascript
+const {jsonToXlsx} = require('json-and-xlsx');
+
+const output = jsonToXlsx.readFromFileAndGet('json-data.json');
+/*
+    returns Buffer
+*/
+```
 
 
 ## readFromFileToFile(sourceFilePath, destFilePath)
-**Kind**: global function  
+Reads json from file and writes the workbook to a file
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| sourceFilePath | string |  | The JSON file to read from |
-| destFilePath | string | &quot;output.xlsx&quot; | The xlsx file to write results to |
+```javascript
+const {jsonToXlsx} = require('json-and-xlsx');
+
+jsonToXlsx.readFromFileToFile('json-data.json', 'workbook.xlsx');
+/*
+    writes json to workbook.xlsx
+*/
+```

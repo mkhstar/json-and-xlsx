@@ -12,18 +12,30 @@ async function readToFile(xlsxData, filePath = 'output.json') {
 
 /**
  * 
- * @param {workbook} xlsxData The workbook to get in js
+ * @param {workbook} xlsxData The workbook to get in js object
  */
 
 function readAndGet(xlsxData) {
     const jsonData = renderJson(xlsxData);
     return jsonData;
 }
+
+/**
+ * 
+ * @param {Buffer} buffer The buffer to get in js object
+ */
+
+function readFromBufferAndGet(buffer) {
+   const workbook = xlsx.read(buffer);
+   const jsonData = renderJson(workbook);
+   return jsonData;
+}
+
+
 /**
  * 
  * @param {string} sourceFilePath The workbook to get in js
  */
-
 
 function readFromFileAndGet(sourceFilePath) {
     const xlsxData = xlsx.readFile(sourceFilePath);
@@ -63,6 +75,7 @@ function renderJson(xlsxData) {
 module.exports = {
     readToFile,
     readAndGet,
+    readFromBufferAndGet,
     readFromFileAndGet,
     readFromFileToFile
 }
