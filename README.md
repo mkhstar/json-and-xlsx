@@ -185,12 +185,12 @@ const output = jsonToXlsx.readFromFileAndGet('json-data.json');
 
 
 ## readFromFileAndGetBuffer(sourceFilePath)
-Reads json returns a workbook
+Reads json from `sourceFile` and returns a Buffer
 
 ```javascript
 const {jsonToXlsx} = require('json-and-xlsx');
 
-const output = jsonToXlsx.readFromFileAndGet('json-data.json');
+const output = jsonToXlsx.readFromFileAndGetBuffer('json-data.json');
 /*
     returns Buffer
 */
