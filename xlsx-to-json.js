@@ -63,9 +63,10 @@ async function readFromFileToFile(sourceFilePath, destFilePath = 'output.json') 
  * @param {workbook} xlsxData The workbook to get in js
  */
 function renderJson(xlsxData) {
-    if (!(xlsxData && xlsxData.Sheets && xlsxData.Sheets.Sheet1)) return console.error('Please pass a valid workbook');
+    if (!(xlsxData && xlsxData.Sheets)) return console.error('Please pass a valid workbook');
 
-    let jsonData = xlsx.utils.sheet_to_json(xlsxData.Sheets.Sheet1);
+    const sheetName = xlsxData.SheetNames[0];
+    let jsonData = xlsx.utils.sheet_to_json(xlsxData.Sheets[sheetName]);
 
     jsonData.map(jd => dot.object(jd));
     return jsonData;
