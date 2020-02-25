@@ -12,12 +12,13 @@
   "author": "Kusi Musah Hussein",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/mkhstar/json-and-xlsx"
+    "type": "git",
+    "url": "https://github.com/mkhstar/json-and-xlsx"
   },
   "dependencies": {
+    "buffer-from": "1.1.1",
     "dot-object": "^2.1.2",
-    "xlsx": "^0.15.5",
-    "buffer-from": "1.1.1"
+    "spread_sheet": "^2.2.1",
+    "xlsx": "^0.15.5"
   }
 }
