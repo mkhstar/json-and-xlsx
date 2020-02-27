@@ -57,7 +57,7 @@ Reads from a buffer and returns a json output
 const {xlsxToJson} = require('json-and-xlsx');
 const buffer = require('./buffer-data.js');
 
-const output = xlsxToJson.readFromBufferAndGet(workbook);
+const output = xlsxToJson.readFromBufferAndGet(buffer);
 /*
     returns [
     {
