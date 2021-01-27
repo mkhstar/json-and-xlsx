@@ -1,6 +1,6 @@
 {
   "name": "json-and-xlsx",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A package that converts JSON to XLSX and XLSX to JSON",
   "main": "index.js",
   "keywords": [
@@ -18,7 +18,6 @@
   "dependencies": {
     "buffer-from": "1.1.1",
     "dot-object": "^2.1.2",
-    "spread_sheet": "^2.2.1",
     "xlsx": "^0.15.5"
   }
 }
